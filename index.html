@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>App Matemáticas Unificada</title>
+  <title>App Matemáticas</title>
   <link rel="stylesheet" href="estilos.css" />
   <style>
     * {
@@ -14,48 +14,45 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f0f8ff;
+      background-color: #f0f8ff;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      min-height: 100vh;
     }
 
     .contenedor {
-      background: #fff;
+      max-width: 700px;
+      width: 100%;
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      max-width: 90%;
-      width: 600px;
       text-align: center;
     }
 
-    h1 {
-      color: #0d47a1;
-    }
-
     .matito {
-      color: #e91e63;
+      color: #007acc;
+      font-weight: bold;
     }
 
     .botones-nav {
       margin: 20px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
     .botones-nav button {
-      margin: 5px;
       padding: 10px 20px;
       font-size: 16px;
-      background: #2196f3;
-      color: white;
+      cursor: pointer;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
+      background-color: #007acc;
+      color: white;
+      transition: background 0.3s;
     }
 
     .botones-nav button:hover {
-      background: #1976d2;
+      background-color: #005f99;
     }
 
     .seccion {
@@ -64,29 +61,27 @@
 
     .activo {
       display: block;
+      margin-top: 20px;
     }
 
     .volver {
-      margin-top: 15px;
-      background: #9c27b0;
+      margin-top: 20px;
+    }
+
+    .volver button {
+      background-color: #aaa;
+      color: white;
     }
 
     video {
       margin-top: 15px;
-      width: 100%;
-      max-width: 616px;
-      height: auto;
       border-radius: 10px;
     }
 
-    @media screen and (max-width: 600px) {
-      .contenedor {
-        padding: 15px;
-      }
-
-      .botones-nav button {
+    @media (max-width: 768px) {
+      video {
         width: 100%;
-        margin-bottom: 10px;
+        height: auto;
       }
     }
   </style>
@@ -96,7 +91,7 @@
     <h1>¡Hola! Soy <span class="matito">Matito</span></h1>
     <p>¿Listo para jugar y aprender matemáticas?</p>
 
-    <div class="botones-nav" id="menu-principal">
+    <div class="botones-nav" id="menu">
       <button onclick="mostrarSeccion('suma')">Suma</button>
       <button onclick="mostrarSeccion('resta')">Resta</button>
       <button onclick="mostrarSeccion('multiplicacion')">Multiplicación</button>
@@ -104,7 +99,7 @@
       <button onclick="mostrarSeccion('juego')">Juego Libre</button>
     </div>
 
-    <!-- SUMA -->
+    <!-- Sección Suma -->
     <div id="suma" class="seccion">
       <h2>Juegos de Suma</h2>
       <p><strong>2 + 3 = ?</strong></p>
@@ -112,10 +107,10 @@
       <button onclick="verificarRespuesta(5, 5)">5</button>
       <button onclick="verificarRespuesta(6, 5)">6</button>
       <div id="resultado-suma"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
 
-    <!-- RESTA -->
+    <!-- Sección Resta -->
     <div id="resta" class="seccion">
       <h2>Juegos de Resta</h2>
       <p><strong>5 - 2 = ?</strong></p>
@@ -123,10 +118,10 @@
       <button onclick="verificarRespuesta(3, 3)">3</button>
       <button onclick="verificarRespuesta(4, 3)">4</button>
       <div id="resultado-resta"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
 
-    <!-- MULTIPLICACIÓN -->
+    <!-- Sección Multiplicación -->
     <div id="multiplicacion" class="seccion">
       <h2>Juegos de Multiplicación</h2>
       <p><strong>2 × 3 = ?</strong></p>
@@ -134,10 +129,10 @@
       <button onclick="verificarRespuesta(6, 6)">6</button>
       <button onclick="verificarRespuesta(7, 6)">7</button>
       <div id="resultado-multiplicacion"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
 
-    <!-- DIVISIÓN -->
+    <!-- Sección División -->
     <div id="division" class="seccion">
       <h2>Juegos de División</h2>
       <p><strong>6 ÷ 2 = ?</strong></p>
@@ -145,34 +140,39 @@
       <button onclick="verificarRespuesta(3, 3)">3</button>
       <button onclick="verificarRespuesta(4, 3)">4</button>
       <div id="resultado-division"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
 
-    <!-- JUEGO LIBRE -->
+    <!-- Sección Juego Libre -->
     <div id="juego" class="seccion">
       <h2>¿Cuánto es 2 + 3?</h2>
       <button onclick="verificarRespuesta(4)">4</button>
       <button onclick="verificarRespuesta(5)">5</button>
       <button onclick="verificarRespuesta(6)">6</button>
       <div id="resultado-juego"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
   </div>
 
   <script>
     function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
-      document.getElementById(id).classList.add('activo');
-      document.getElementById('menu-principal').style.display = 'none';
+      document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activo'));
+      document.getElementById('menu').style.display = 'none';
+      const seccion = document.getElementById(id);
+      if (seccion) seccion.classList.add('activo');
     }
 
     function volverMenu() {
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
-      document.getElementById('menu-principal').style.display = 'block';
+      document.querySelectorAll('.seccion').forEach(sec => {
+        sec.classList.remove('activo');
+        const res = sec.querySelector('div[id^="resultado"]');
+        if (res) res.innerHTML = '';
+      });
+      document.getElementById('menu').style.display = 'flex';
     }
 
     function verificarRespuesta(respuesta, correcta = null) {
-      let correcto = correcta !== null ? respuesta === correcta : respuesta === 5;
+      const correcto = (correcta !== null) ? (respuesta === correcta) : (respuesta === 5);
       const activo = document.querySelector('.seccion.activo');
       const resultadoDiv = activo.querySelector('div[id^="resultado"]');
       resultadoDiv.innerHTML = '';
@@ -181,6 +181,8 @@
       video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
       video.autoplay = true;
       video.controls = false;
+      video.muted = false;
+      video.volume = 1.0;
       video.width = 616;
       video.height = 480;
 
@@ -189,5 +191,4 @@
   </script>
 </body>
 </html>
-
 
