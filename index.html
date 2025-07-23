@@ -57,7 +57,7 @@
       box-shadow: 0 4px 10px rgba(255, 140, 0, 0.6);
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
-    .botones-nav button:hover:not(:disabled) {
+    .botones-nav button:hover {
       background-color: #ffb733;
       transform: scale(1.1);
     }
@@ -91,47 +91,15 @@
       box-shadow: 0 3px 7px rgba(0,153,255,0.6);
       transition: background-color 0.25s ease, transform 0.2s ease;
     }
-    button:hover:not(:disabled) {
+    button:hover {
       background-color: #33bbff;
       transform: scale(1.05);
     }
-    button:disabled {
-      cursor: not-allowed;
-      opacity: 0.6;
-      background-color: #004a7f;
-      box-shadow: none;
-      transform: none;
-    }
-    .volver {
+    #resultado {
       margin-top: 25px;
-    }
-    .volver button {
-      background-color: #666;
-      padding: 10px 25px;
-      font-size: 1.1rem;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px #444;
-    }
-    .volver button:hover {
-      background-color: #888;
-    }
-    video {
-      margin-top: 20px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-      max-width: 100%;
-      height: auto;
-    }
-    .estrella {
-      font-size: 80px;
-      color: gold;
-      animation: brillar 1.6s infinite;
-      margin-top: 12px;
-      text-shadow: 0 0 12px #ffdb00, 0 0 25px #ffd500aa;
-    }
-    @keyframes brillar {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.3); }
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 5px #0008;
     }
     @media (max-width: 600px) {
       .botones-nav button, button {
@@ -147,9 +115,6 @@
       strong {
         font-size: 1.2rem;
       }
-      .estrella {
-        font-size: 50px;
-      }
     }
   </style>
 </head>
@@ -158,7 +123,7 @@
     <h1>¡Hola! Soy <span class="matito">Matito</span></h1>
     <p>¿Listo para jugar y aprender matemáticas?</p>
 
-    <div class="botones-nav" id="menu">
+    <div class="botones-nav">
       <button onclick="mostrarSeccion('suma')">Suma</button>
       <button onclick="mostrarSeccion('resta')">Resta</button>
       <button onclick="mostrarSeccion('multiplicacion')">Multiplicación</button>
@@ -166,119 +131,60 @@
       <button onclick="mostrarSeccion('juego')">Juego Libre</button>
     </div>
 
-    <div id="suma" class="seccion">
+    <div id="suma" class="seccion activo">
       <h2>Juegos de Suma</h2>
       <p><strong>2 + 3 = ?</strong></p>
-      <button onclick="verificarRespuesta(4, 5, this)">4</button>
-      <button onclick="verificarRespuesta(5, 5, this)">5</button>
-      <button onclick="verificarRespuesta(6, 5, this)">6</button>
-      <div id="resultado-suma"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <button onclick="verificarRespuesta(4, 5)">4</button>
+      <button onclick="verificarRespuesta(5, 5)">5</button>
+      <button onclick="verificarRespuesta(6, 5)">6</button>
     </div>
 
     <div id="resta" class="seccion">
       <h2>Juegos de Resta</h2>
       <p><strong>5 - 2 = ?</strong></p>
-      <button onclick="verificarRespuesta(2, 3, this)">2</button>
-      <button onclick="verificarRespuesta(3, 3, this)">3</button>
-      <button onclick="verificarRespuesta(4, 3, this)">4</button>
-      <div id="resultado-resta"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <button onclick="verificarRespuesta(2, 3)">2</button>
+      <button onclick="verificarRespuesta(3, 3)">3</button>
+      <button onclick="verificarRespuesta(4, 3)">4</button>
     </div>
 
     <div id="multiplicacion" class="seccion">
       <h2>Juegos de Multiplicación</h2>
       <p><strong>2 × 3 = ?</strong></p>
-      <button onclick="verificarRespuesta(5, 6, this)">5</button>
-      <button onclick="verificarRespuesta(6, 6, this)">6</button>
-      <button onclick="verificarRespuesta(7, 6, this)">7</button>
-      <div id="resultado-multiplicacion"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <button onclick="verificarRespuesta(5, 6)">5</button>
+      <button onclick="verificarRespuesta(6, 6)">6</button>
+      <button onclick="verificarRespuesta(7, 6)">7</button>
     </div>
 
     <div id="division" class="seccion">
       <h2>Juegos de División</h2>
       <p><strong>6 ÷ 2 = ?</strong></p>
-      <button onclick="verificarRespuesta(2, 3, this)">2</button>
-      <button onclick="verificarRespuesta(3, 3, this)">3</button>
-      <button onclick="verificarRespuesta(4, 3, this)">4</button>
-      <div id="resultado-division"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <button onclick="verificarRespuesta(2, 3)">2</button>
+      <button onclick="verificarRespuesta(3, 3)">3</button>
+      <button onclick="verificarRespuesta(4, 3)">4</button>
     </div>
 
     <div id="juego" class="seccion">
       <h2>¿Cuánto es 2 + 3?</h2>
-      <button onclick="verificarRespuesta(4, 5, this)">4</button>
-      <button onclick="verificarRespuesta(5, 5, this)">5</button>
-      <button onclick="verificarRespuesta(6, 5, this)">6</button>
-      <div id="resultado-juego"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <button onclick="verificarRespuesta(4)">4</button>
+      <button onclick="verificarRespuesta(5)">5</button>
+      <button onclick="verificarRespuesta(6)">6</button>
+      <div id="resultado"></div>
     </div>
   </div>
 
   <script>
-    const audioCorrecto = new Audio('sounds/correcto.mp3');
-    const audioIncorrecto = new Audio('sounds/incorrecto.mp3');
-
     function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activo'));
-      document.getElementById('menu').style.display = 'none';
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
       document.getElementById(id).classList.add('activo');
     }
 
-    function volverMenu() {
-      document.querySelectorAll('.seccion').forEach(sec => {
-        sec.classList.remove('activo');
-        const res = sec.querySelector('div[id^="resultado"]');
-        if (res) res.innerHTML = '';
-        sec.querySelectorAll('button').forEach(btn => {
-          btn.style.backgroundColor = '#0099ff';
-          btn.disabled = false;
-        });
-      });
-      document.getElementById('menu').style.display = 'flex';
-    }
-
-    function verificarRespuesta(respuesta, correcta = 5, boton) {
-      const correcto = (respuesta === correcta);
-      const activo = document.querySelector('.seccion.activo');
-      const resultadoDiv = activo.querySelector('div[id^="resultado"]');
-      resultadoDiv.innerHTML = '';
-
-      activo.querySelectorAll('button').forEach(btn => {
-        btn.style.backgroundColor = '#0099ff';
-        btn.disabled = false;
-      });
-
-      activo.querySelectorAll('button').forEach(btn => btn.disabled = true);
-      boton.style.backgroundColor = correcto ? '#28a745' : '#dc3545';
-      boton.disabled = false;
-
-      const audio = correcto ? audioCorrecto : audioIncorrecto;
-      audio.currentTime = 0;
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log('Error reproduciendo audio:', error);
-        });
-      }
-
-      const video = document.createElement('video');
-      video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
-      video.autoplay = true;
-      video.controls = true;
-      video.playsInline = true;
-      video.muted = true;
-      video.width = 616;
-      video.height = 480;
-
-      resultadoDiv.appendChild(video);
-
-      if (correcto) {
-        const estrella = document.createElement('div');
-        estrella.className = 'estrella';
-        estrella.innerHTML = '⭐';
-        resultadoDiv.appendChild(estrella);
+    function verificarRespuesta(respuesta, correcta = null) {
+      let correcto = correcta !== null ? respuesta === correcta : respuesta === 5;
+      const resultado = document.getElementById("resultado");
+      if (resultado) {
+        resultado.innerHTML = correcto ? "<p>¡Correcto! 🎉</p>" : "<p>Intenta de nuevo ❌</p>";
+      } else {
+        alert(correcto ? "¡Correcto! 🎉" : "Intenta de nuevo ❌");
       }
     }
   </script>
