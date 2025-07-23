@@ -2,86 +2,125 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>App Matemáticas</title>
-  <link rel="stylesheet" href="estilos.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>App Matemáticas Unificada</title>
   <style>
     * {
       box-sizing: border-box;
     }
-
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f8ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      margin: 0; padding: 0;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+      color: #fff;
     }
-
     .contenedor {
+      background-color: rgba(0, 122, 204, 0.9);
+      padding: 30px 40px;
+      border-radius: 15px;
       max-width: 700px;
-      width: 100%;
-      padding: 20px;
+      width: 90%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
       text-align: center;
     }
-
-    .matito {
-      color: #007acc;
-      font-weight: bold;
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
     }
-
+    .matito {
+      color: #ffe066;
+      font-weight: 900;
+      text-shadow: 1px 1px 4px #ffa500aa;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
     .botones-nav {
-      margin: 20px 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 15px;
+      margin-bottom: 25px;
     }
-
     .botones-nav button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
+      background-color: #ff8c00;
       border: none;
-      border-radius: 5px;
-      background-color: #007acc;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 12px;
       color: white;
-      transition: background 0.3s;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(255, 140, 0, 0.6);
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
-
     .botones-nav button:hover {
-      background-color: #005f99;
+      background-color: #ffb733;
+      transform: scale(1.1);
     }
-
     .seccion {
       display: none;
+      margin-top: 20px;
     }
-
     .activo {
       display: block;
-      margin-top: 20px;
     }
-
-    .volver {
-      margin-top: 20px;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 3px #333;
     }
-
-    .volver button {
-      background-color: #aaa;
+    strong {
+      font-size: 1.5rem;
+      color: #fff3cd;
+      text-shadow: 1px 1px 2px #aa5500;
+    }
+    button {
+      background-color: #0099ff;
+      border: none;
+      margin: 8px 10px 10px 0;
+      padding: 10px 18px;
+      font-size: 1.3rem;
+      border-radius: 10px;
       color: white;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 3px 7px rgba(0,153,255,0.6);
+      transition: background-color 0.25s ease, transform 0.2s ease;
     }
-
+    button:hover {
+      background-color: #33bbff;
+      transform: scale(1.05);
+    }
+    #resultado {
+      margin-top: 25px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 5px #0008;
+    }
     video {
       margin-top: 15px;
-      border-radius: 10px;
+      border-radius: 15px;
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
-
-    @media (max-width: 768px) {
-      video {
-        width: 100%;
-        height: auto;
+    @media (max-width: 600px) {
+      .botones-nav button, button {
+        font-size: 1rem;
+        padding: 10px 14px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      strong {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -91,7 +130,7 @@
     <h1>¡Hola! Soy <span class="matito">Matito</span></h1>
     <p>¿Listo para jugar y aprender matemáticas?</p>
 
-    <div class="botones-nav" id="menu">
+    <div class="botones-nav">
       <button onclick="mostrarSeccion('suma')">Suma</button>
       <button onclick="mostrarSeccion('resta')">Resta</button>
       <button onclick="mostrarSeccion('multiplicacion')">Multiplicación</button>
@@ -99,97 +138,102 @@
       <button onclick="mostrarSeccion('juego')">Juego Libre</button>
     </div>
 
-    <!-- Sección Suma -->
-    <div id="suma" class="seccion">
+    <div id="suma" class="seccion activo">
       <h2>Juegos de Suma</h2>
       <p><strong>2 + 3 = ?</strong></p>
       <button onclick="verificarRespuesta(4, 5)">4</button>
       <button onclick="verificarRespuesta(5, 5)">5</button>
       <button onclick="verificarRespuesta(6, 5)">6</button>
-      <div id="resultado-suma"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <div id="resultadoSuma"></div>
+      <video id="videoCorrectoSuma" src="videos/correcto.mp4" autoplay loop muted style="display:none;"></video>
+      <video id="videoIncorrectoSuma" src="videos/incorrecto2.mp4" autoplay loop muted style="display:none;"></video>
     </div>
 
-    <!-- Sección Resta -->
     <div id="resta" class="seccion">
       <h2>Juegos de Resta</h2>
       <p><strong>5 - 2 = ?</strong></p>
       <button onclick="verificarRespuesta(2, 3)">2</button>
       <button onclick="verificarRespuesta(3, 3)">3</button>
       <button onclick="verificarRespuesta(4, 3)">4</button>
-      <div id="resultado-resta"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <div id="resultadoResta"></div>
+      <video id="videoCorrectoResta" src="videos/correcto.mp4" autoplay loop muted style="display:none;"></video>
+      <video id="videoIncorrectoResta" src="videos/incorrecto2.mp4" autoplay loop muted style="display:none;"></video>
     </div>
 
-    <!-- Sección Multiplicación -->
     <div id="multiplicacion" class="seccion">
       <h2>Juegos de Multiplicación</h2>
       <p><strong>2 × 3 = ?</strong></p>
       <button onclick="verificarRespuesta(5, 6)">5</button>
       <button onclick="verificarRespuesta(6, 6)">6</button>
       <button onclick="verificarRespuesta(7, 6)">7</button>
-      <div id="resultado-multiplicacion"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <div id="resultadoMultiplicacion"></div>
+      <video id="videoCorrectoMultiplicacion" src="videos/correcto.mp4" autoplay loop muted style="display:none;"></video>
+      <video id="videoIncorrectoMultiplicacion" src="videos/incorrecto2.mp4" autoplay loop muted style="display:none;"></video>
     </div>
 
-    <!-- Sección División -->
     <div id="division" class="seccion">
       <h2>Juegos de División</h2>
       <p><strong>6 ÷ 2 = ?</strong></p>
       <button onclick="verificarRespuesta(2, 3)">2</button>
       <button onclick="verificarRespuesta(3, 3)">3</button>
       <button onclick="verificarRespuesta(4, 3)">4</button>
-      <div id="resultado-division"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <div id="resultadoDivision"></div>
+      <video id="videoCorrectoDivision" src="videos/correcto.mp4" autoplay loop muted style="display:none;"></video>
+      <video id="videoIncorrectoDivision" src="videos/incorrecto2.mp4" autoplay loop muted style="display:none;"></video>
     </div>
 
-    <!-- Sección Juego Libre -->
     <div id="juego" class="seccion">
       <h2>¿Cuánto es 2 + 3?</h2>
       <button onclick="verificarRespuesta(4)">4</button>
       <button onclick="verificarRespuesta(5)">5</button>
       <button onclick="verificarRespuesta(6)">6</button>
-      <div id="resultado-juego"></div>
-      <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
+      <div id="resultado"></div>
     </div>
   </div>
 
   <script>
     function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activo'));
-      document.getElementById('menu').style.display = 'none';
-      const seccion = document.getElementById(id);
-      if (seccion) seccion.classList.add('activo');
-    }
-
-    function volverMenu() {
-      document.querySelectorAll('.seccion').forEach(sec => {
-        sec.classList.remove('activo');
-        const res = sec.querySelector('div[id^="resultado"]');
-        if (res) res.innerHTML = '';
-      });
-      document.getElementById('menu').style.display = 'flex';
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
+      document.getElementById(id).classList.add('activo');
     }
 
     function verificarRespuesta(respuesta, correcta = null) {
-      const correcto = (correcta !== null) ? (respuesta === correcta) : (respuesta === 5);
-      const activo = document.querySelector('.seccion.activo');
-      const resultadoDiv = activo.querySelector('div[id^="resultado"]');
-      resultadoDiv.innerHTML = '';
+      // Detectar qué sección está activa
+      const seccionActiva = document.querySelector('.seccion.activo');
+      if (!seccionActiva) return;
 
-      const video = document.createElement('video');
-      video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
-      video.autoplay = true;
-      video.controls = false;
-      video.muted = false;
-      video.volume = 1.0;
-      video.width = 616;
-      video.height = 480;
+      // Obtener el div resultado para la sección activa
+      const resultadoId = 'resultado' + capitalizeFirstLetter(seccionActiva.id);
+      const resultadoDiv = document.getElementById(resultadoId);
 
-      resultadoDiv.appendChild(video);
+      // Obtener los videos de correcto e incorrecto para la sección
+      const videoCorrecto = document.getElementById('videoCorrecto' + capitalizeFirstLetter(seccionActiva.id));
+      const videoIncorrecto = document.getElementById('videoIncorrecto' + capitalizeFirstLetter(seccionActiva.id));
+
+      // Lógica de respuesta correcta
+      let correcto = correcta !== null ? respuesta === correcta : respuesta === 5;
+
+      if (resultadoDiv) {
+        resultadoDiv.innerHTML = correcto
+          ? "<p>¡Correcto! 🎉</p>"
+          : "<p>Intenta de nuevo ❌</p>";
+      }
+
+      // Mostrar/ocultar videos según la respuesta
+      if (videoCorrecto && videoIncorrecto) {
+        if (correcto) {
+          videoCorrecto.style.display = 'block';
+          videoIncorrecto.style.display = 'none';
+        } else {
+          videoCorrecto.style.display = 'none';
+          videoIncorrecto.style.display = 'block';
+        }
+      }
+    }
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
   </script>
 </body>
 </html>
-
-
