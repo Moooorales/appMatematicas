@@ -48,11 +48,12 @@
       border-radius: 5px;
       background-color: #007acc;
       color: white;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
     }
 
     .botones-nav button:hover {
       background-color: #005f99;
+      transform: scale(1.05);
     }
 
     .seccion {
@@ -76,6 +77,18 @@
     video {
       margin-top: 15px;
       border-radius: 10px;
+    }
+
+    .estrella {
+      font-size: 60px;
+      color: gold;
+      animation: brillar 1.5s infinite;
+      margin-top: 10px;
+    }
+
+    @keyframes brillar {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
     }
 
     @media (max-width: 768px) {
@@ -103,9 +116,9 @@
     <div id="suma" class="seccion">
       <h2>Juegos de Suma</h2>
       <p><strong>2 + 3 = ?</strong></p>
-      <button onclick="verificarRespuesta(4, 5)">4</button>
-      <button onclick="verificarRespuesta(5, 5)">5</button>
-      <button onclick="verificarRespuesta(6, 5)">6</button>
+      <button onclick="verificarRespuesta(4, 5, this)">4</button>
+      <button onclick="verificarRespuesta(5, 5, this)">5</button>
+      <button onclick="verificarRespuesta(6, 5, this)">6</button>
       <div id="resultado-suma"></div>
       <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
@@ -114,9 +127,9 @@
     <div id="resta" class="seccion">
       <h2>Juegos de Resta</h2>
       <p><strong>5 - 2 = ?</strong></p>
-      <button onclick="verificarRespuesta(2, 3)">2</button>
-      <button onclick="verificarRespuesta(3, 3)">3</button>
-      <button onclick="verificarRespuesta(4, 3)">4</button>
+      <button onclick="verificarRespuesta(2, 3, this)">2</button>
+      <button onclick="verificarRespuesta(3, 3, this)">3</button>
+      <button onclick="verificarRespuesta(4, 3, this)">4</button>
       <div id="resultado-resta"></div>
       <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
@@ -125,9 +138,9 @@
     <div id="multiplicacion" class="seccion">
       <h2>Juegos de Multiplicación</h2>
       <p><strong>2 × 3 = ?</strong></p>
-      <button onclick="verificarRespuesta(5, 6)">5</button>
-      <button onclick="verificarRespuesta(6, 6)">6</button>
-      <button onclick="verificarRespuesta(7, 6)">7</button>
+      <button onclick="verificarRespuesta(5, 6, this)">5</button>
+      <button onclick="verificarRespuesta(6, 6, this)">6</button>
+      <button onclick="verificarRespuesta(7, 6, this)">7</button>
       <div id="resultado-multiplicacion"></div>
       <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
@@ -136,9 +149,9 @@
     <div id="division" class="seccion">
       <h2>Juegos de División</h2>
       <p><strong>6 ÷ 2 = ?</strong></p>
-      <button onclick="verificarRespuesta(2, 3)">2</button>
-      <button onclick="verificarRespuesta(3, 3)">3</button>
-      <button onclick="verificarRespuesta(4, 3)">4</button>
+      <button onclick="verificarRespuesta(2, 3, this)">2</button>
+      <button onclick="verificarRespuesta(3, 3, this)">3</button>
+      <button onclick="verificarRespuesta(4, 3, this)">4</button>
       <div id="resultado-division"></div>
       <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
@@ -146,9 +159,9 @@
     <!-- Sección Juego Libre -->
     <div id="juego" class="seccion">
       <h2>¿Cuánto es 2 + 3?</h2>
-      <button onclick="verificarRespuesta(4)">4</button>
-      <button onclick="verificarRespuesta(5)">5</button>
-      <button onclick="verificarRespuesta(6)">6</button>
+      <button onclick="verificarRespuesta(4, 5, this)">4</button>
+      <button onclick="verificarRespuesta(5, 5, this)">5</button>
+      <button onclick="verificarRespuesta(6, 5, this)">6</button>
       <div id="resultado-juego"></div>
       <div class="volver"><button onclick="volverMenu()">Volver al Menú</button></div>
     </div>
@@ -171,11 +184,19 @@
       document.getElementById('menu').style.display = 'flex';
     }
 
-    function verificarRespuesta(respuesta, correcta = null) {
-      const correcto = (correcta !== null) ? (respuesta === correcta) : (respuesta === 5);
+    function verificarRespuesta(respuesta, correcta = 5, boton) {
+      const correcto = (respuesta === correcta);
       const activo = document.querySelector('.seccion.activo');
       const resultadoDiv = activo.querySelector('div[id^="resultado"]');
       resultadoDiv.innerHTML = '';
+
+      // Reset colores de botones
+      activo.querySelectorAll('button').forEach(btn => {
+        btn.style.backgroundColor = '#007acc';
+      });
+
+      // Marcar botón seleccionado
+      boton.style.backgroundColor = correcto ? '#28a745' : '#dc3545';
 
       const video = document.createElement('video');
       video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
@@ -187,8 +208,16 @@
       video.height = 480;
 
       resultadoDiv.appendChild(video);
+
+      if (correcto) {
+        const estrella = document.createElement('div');
+        estrella.className = 'estrella';
+        estrella.innerHTML = '⭐';
+        resultadoDiv.appendChild(estrella);
+      }
     }
   </script>
 </body>
 </html>
+
 
