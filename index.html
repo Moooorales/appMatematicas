@@ -69,6 +69,15 @@
     .volver {
       margin-top: 15px;
       background: #9c27b0;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .volver:hover {
+      background: #7b1fa2;
     }
 
     video {
@@ -84,7 +93,7 @@
         padding: 15px;
       }
 
-      .botones-nav button {
+      .botones-nav button, .volver {
         width: 100%;
         margin-bottom: 10px;
       }
@@ -175,19 +184,29 @@
       let correcto = correcta !== null ? respuesta === correcta : respuesta === 5;
       const activo = document.querySelector('.seccion.activo');
       const resultadoDiv = activo.querySelector('div[id^="resultado"]');
+      
+      // Limpiar resultado previo
       resultadoDiv.innerHTML = '';
 
+      // Mostrar mensaje
+      const mensaje = document.createElement('p');
+      mensaje.textContent = correcto ? "¡Correcto! 🎉" : "Intenta de nuevo ❌";
+      resultadoDiv.appendChild(mensaje);
+
+      // Crear video
       const video = document.createElement('video');
       video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
       video.autoplay = true;
-      video.controls = false;
+      video.loop = true;
+      video.muted = true;
       video.width = 616;
       video.height = 480;
+      video.style.marginTop = "15px";
+      video.style.borderRadius = "10px";
 
       resultadoDiv.appendChild(video);
     }
   </script>
 </body>
 </html>
-
 
