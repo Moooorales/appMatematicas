@@ -1,201 +1,405 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>App Matemáticas Unificada</title>
-  <link rel="stylesheet" href="estilos.css" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f0f8ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+  <meta charset="UTF-8" />
 
-    .contenedor {
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      max-width: 90%;
-      width: 600px;
-      text-align: center;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    h1 {
-      color: #0d47a1;
-    }
+  <title>App Matemáticas Unificada</title>
 
-    .matito {
-      color: #e91e63;
-    }
+  <link rel="stylesheet" href="estilos.css" />
 
-    .botones-nav {
-      margin: 20px 0;
-    }
+  <style>
 
-    .botones-nav button {
-      margin: 5px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #2196f3;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+    * {
 
-    .botones-nav button:hover {
-      background: #1976d2;
-    }
+      box-sizing: border-box;
 
-    .seccion {
-      display: none;
-    }
+    }
 
-    .activo {
-      display: block;
-    }
 
-    .volver {
-      margin-top: 15px;
-      background: #9c27b0;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
 
-    .volver:hover {
-      background: #7b1fa2;
-    }
+    body {
 
-    video {
-      margin-top: 15px;
-      width: 100%;
-      max-width: 616px;
-      height: auto;
-      border-radius: 10px;
-    }
+      font-family: Arial, sans-serif;
 
-    @media screen and (max-width: 600px) {
-      .contenedor {
-        padding: 15px;
-      }
+      margin: 0;
 
-      .botones-nav button {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-    }
-  </style>
+      padding: 0;
+
+      background: #f0f8ff;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      min-height: 100vh;
+
+    }
+
+
+
+    .contenedor {
+
+      background: #fff;
+
+      padding: 20px;
+
+      border-radius: 15px;
+
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+      max-width: 90%;
+
+      width: 600px;
+
+      text-align: center;
+
+    }
+
+
+
+    h1 {
+
+      color: #0d47a1;
+
+    }
+
+
+
+    .matito {
+
+      color: #e91e63;
+
+    }
+
+
+
+    .botones-nav {
+
+      margin: 20px 0;
+
+    }
+
+
+
+    .botones-nav button {
+
+      margin: 5px;
+
+      padding: 10px 20px;
+
+      font-size: 16px;
+
+      background: #2196f3;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .botones-nav button:hover {
+
+      background: #1976d2;
+
+    }
+
+
+
+    .seccion {
+
+      display: none;
+
+    }
+
+
+
+    .activo {
+
+      display: block;
+
+    }
+
+
+
+    .volver {
+
+      margin-top: 15px;
+
+      background: #9c27b0;
+
+      color: white;
+
+      border: none;
+
+      padding: 10px 15px;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
+
+
+
+    .volver:hover {
+
+      background: #7b1fa2;
+
+    }
+
+
+
+    video {
+
+      margin-top: 15px;
+
+      width: 100%;
+
+      max-width: 616px;
+
+      height: auto;
+
+      border-radius: 10px;
+
+    }
+
+
+
+    @media screen and (max-width: 600px) {
+
+      .contenedor {
+
+        padding: 15px;
+
+      }
+
+
+
+      .botones-nav button {
+
+        width: 100%;
+
+        margin-bottom: 10px;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 <body>
-  <div class="contenedor">
-    <h1>¡Hola! Soy <span class="matito">Matito</span></h1>
-    <p>¿Listo para jugar y aprender matemáticas?</p>
 
-    <div class="botones-nav" id="menu-principal">
-      <button onclick="mostrarSeccion('suma')">Suma</button>
-      <button onclick="mostrarSeccion('resta')">Resta</button>
-      <button onclick="mostrarSeccion('multiplicacion')">Multiplicación</button>
-      <button onclick="mostrarSeccion('division')">División</button>
-      <button onclick="mostrarSeccion('juego')">Juego Libre</button>
-    </div>
+  <div class="contenedor">
 
-    <!-- SUMA -->
-    <div id="suma" class="seccion">
-      <h2>Juegos de Suma</h2>
-      <p><strong>2 + 3 = ?</strong></p>
-      <button onclick="verificarRespuesta(4, 5)">4</button>
-      <button onclick="verificarRespuesta(5, 5)">5</button>
-      <button onclick="verificarRespuesta(6, 5)">6</button>
-      <div id="resultado-suma"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
-    </div>
+    <h1>¡Hola! Soy <span class="matito">Matito</span></h1>
 
-    <!-- RESTA -->
-    <div id="resta" class="seccion">
-      <h2>Juegos de Resta</h2>
-      <p><strong>5 - 2 = ?</strong></p>
-      <button onclick="verificarRespuesta(2, 3)">2</button>
-      <button onclick="verificarRespuesta(3, 3)">3</button>
-      <button onclick="verificarRespuesta(4, 3)">4</button>
-      <div id="resultado-resta"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
-    </div>
+    <p>¿Listo para jugar y aprender matemáticas?</p>
 
-    <!-- MULTIPLICACIÓN -->
-    <div id="multiplicacion" class="seccion">
-      <h2>Juegos de Multiplicación</h2>
-      <p><strong>2 × 3 = ?</strong></p>
-      <button onclick="verificarRespuesta(5, 6)">5</button>
-      <button onclick="verificarRespuesta(6, 6)">6</button>
-      <button onclick="verificarRespuesta(7, 6)">7</button>
-      <div id="resultado-multiplicacion"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
-    </div>
 
-    <!-- DIVISIÓN -->
-    <div id="division" class="seccion">
-      <h2>Juegos de División</h2>
-      <p><strong>6 ÷ 2 = ?</strong></p>
-      <button onclick="verificarRespuesta(2, 3)">2</button>
-      <button onclick="verificarRespuesta(3, 3)">3</button>
-      <button onclick="verificarRespuesta(4, 3)">4</button>
-      <div id="resultado-division"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
-    </div>
 
-    <!-- JUEGO LIBRE -->
-    <div id="juego" class="seccion">
-      <h2>¿Cuánto es 2 + 3?</h2>
-      <button onclick="verificarRespuesta(4)">4</button>
-      <button onclick="verificarRespuesta(5)">5</button>
-      <button onclick="verificarRespuesta(6)">6</button>
-      <div id="resultado-juego"></div>
-      <button class="volver" onclick="volverMenu()">Volver al menú</button>
-    </div>
-  </div>
+    <div class="botones-nav" id="menu-principal">
 
-  <script>
-    function mostrarSeccion(id) {
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
-      document.getElementById(id).classList.add('activo');
-      document.getElementById('menu-principal').style.display = 'none';
-    }
+      <button onclick="mostrarSeccion('suma')">Suma</button>
 
-    function volverMenu() {
-      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
-      document.getElementById('menu-principal').style.display = 'block';
-    }
+      <button onclick="mostrarSeccion('resta')">Resta</button>
 
-    function verificarRespuesta(respuesta, correcta = null) {
-      let correcto = correcta !== null ? respuesta === correcta : respuesta === 5;
-      const activo = document.querySelector('.seccion.activo');
-      const resultadoDiv = activo.querySelector('div[id^="resultado"]');
-      resultadoDiv.innerHTML = '';
+      <button onclick="mostrarSeccion('multiplicacion')">Multiplicación</button>
 
-      const video = document.createElement('video');
-      video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
-      video.autoplay = true;
-      video.muted = false;
-      video.playsInline = true;
-      video.volume = 1.0;
-      video.style.display = "block";
+      <button onclick="mostrarSeccion('division')">División</button>
 
-      resultadoDiv.appendChild(video);
-    }
-  </script>
+      <button onclick="mostrarSeccion('juego')">Juego Libre</button>
+
+    </div>
+
+
+
+    <!-- SUMA -->
+
+    <div id="suma" class="seccion">
+
+      <h2>Juegos de Suma</h2>
+
+      <p><strong>2 + 3 = ?</strong></p>
+
+      <button onclick="verificarRespuesta(4, 5)">4</button>
+
+      <button onclick="verificarRespuesta(5, 5)">5</button>
+
+      <button onclick="verificarRespuesta(6, 5)">6</button>
+
+      <div id="resultado-suma"></div>
+
+      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+
+    </div>
+
+
+
+    <!-- RESTA -->
+
+    <div id="resta" class="seccion">
+
+      <h2>Juegos de Resta</h2>
+
+      <p><strong>5 - 2 = ?</strong></p>
+
+      <button onclick="verificarRespuesta(2, 3)">2</button>
+
+      <button onclick="verificarRespuesta(3, 3)">3</button>
+
+      <button onclick="verificarRespuesta(4, 3)">4</button>
+
+      <div id="resultado-resta"></div>
+
+      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+
+    </div>
+
+
+
+    <!-- MULTIPLICACIÓN -->
+
+    <div id="multiplicacion" class="seccion">
+
+      <h2>Juegos de Multiplicación</h2>
+
+      <p><strong>2 × 3 = ?</strong></p>
+
+      <button onclick="verificarRespuesta(5, 6)">5</button>
+
+      <button onclick="verificarRespuesta(6, 6)">6</button>
+
+      <button onclick="verificarRespuesta(7, 6)">7</button>
+
+      <div id="resultado-multiplicacion"></div>
+
+      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+
+    </div>
+
+
+
+    <!-- DIVISIÓN -->
+
+    <div id="division" class="seccion">
+
+      <h2>Juegos de División</h2>
+
+      <p><strong>6 ÷ 2 = ?</strong></p>
+
+      <button onclick="verificarRespuesta(2, 3)">2</button>
+
+      <button onclick="verificarRespuesta(3, 3)">3</button>
+
+      <button onclick="verificarRespuesta(4, 3)">4</button>
+
+      <div id="resultado-division"></div>
+
+      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+
+    </div>
+
+
+
+    <!-- JUEGO LIBRE -->
+
+    <div id="juego" class="seccion">
+
+      <h2>¿Cuánto es 2 + 3?</h2>
+
+      <button onclick="verificarRespuesta(4)">4</button>
+
+      <button onclick="verificarRespuesta(5)">5</button>
+
+      <button onclick="verificarRespuesta(6)">6</button>
+
+      <div id="resultado-juego"></div>
+
+      <button class="volver" onclick="volverMenu()">Volver al menú</button>
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    function mostrarSeccion(id) {
+
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
+
+      document.getElementById(id).classList.add('activo');
+
+      document.getElementById('menu-principal').style.display = 'none';
+
+    }
+
+
+
+    function volverMenu() {
+
+      document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activo'));
+
+      document.getElementById('menu-principal').style.display = 'block';
+
+    }
+
+
+
+    function verificarRespuesta(respuesta, correcta = null) {
+
+      let correcto = correcta !== null ? respuesta === correcta : respuesta === 5;
+
+      const activo = document.querySelector('.seccion.activo');
+
+      const resultadoDiv = activo.querySelector('div[id^="resultado"]');
+
+      resultadoDiv.innerHTML = '';
+
+
+
+      const video = document.createElement('video');
+
+      video.src = correcto ? "videos/correcto.mp4" : "videos/incorrecto2.mp4";
+
+      video.autoplay = true;
+
+      video.controls = true;        // Mostrar controles para activar audio
+
+      video.width = 616;
+
+      video.height = 480;
+
+      video.muted = false;          // No silenciar para que suene el audio
+
+      video.playsInline = true;
+
+      video.volume = 1.0;
+
+
+
+      resultadoDiv.appendChild(video);
+
+    }
+
+  </script>
+
 </body>
+
 </html>
