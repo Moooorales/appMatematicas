@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>App Matemáticas Unificada</title>
   <style>
-    /* Reset y tipografía */
     * {
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,24 +12,26 @@
       padding: 0;
     }
 
-    body {
+    body, html {
+      height: 100%;
       background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
       color: #fff;
-      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      min-height: 100vh;
+      text-align: center;
     }
 
     .contenedor {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      width: 350px;
-      max-width: 100%;
+      width: 100%;
+      max-width: 400px;
       padding: 30px 25px;
-      text-align: center;
+      margin: auto;
     }
 
     h1 {
@@ -89,9 +90,10 @@
       border-radius: 12px;
       margin-top: 10px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      max-width: 100%;
+      height: auto;
     }
 
-    /* Botón volver */
     .volver-btn {
       margin-top: 25px;
       background-color: #555;
@@ -107,6 +109,42 @@
       background-color: #777;
     }
 
+    /* Responsive para móvil */
+    @media (max-width: 480px) {
+      .contenedor {
+        width: 95%;
+        padding: 20px 15px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 10px 14px;
+        margin: 6px 4px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .resultado p {
+        font-size: 1.1rem;
+      }
+
+      video {
+        width: 120px !important;
+        height: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -205,3 +243,4 @@
 
 </body>
 </html>
+
