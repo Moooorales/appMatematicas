@@ -5,14 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>App Matemáticas Unificada</title>
   <style>
-    .oculto { display: none; }
-    button { margin: 5px; padding: 10px; font-size: 16px; }
-    .resultado p { font-weight: bold; margin: 10px 0 5px; }
+    /* Reset y tipografía */
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .contenedor {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      width: 350px;
+      max-width: 100%;
+      padding: 30px 25px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .matito {
+      color: #ffdd57;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    button {
+      background-color: #ffdd57;
+      border: none;
+      border-radius: 8px;
+      color: #222;
+      cursor: pointer;
+      font-size: 1.1rem;
+      margin: 8px 6px;
+      padding: 12px 20px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #f2c94c;
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .resultado p {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin: 15px 0 10px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+    }
+
+    video {
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Botón volver */
+    .volver-btn {
+      margin-top: 25px;
+      background-color: #555;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .volver-btn:hover {
+      background-color: #777;
+    }
+
   </style>
 </head>
 <body>
 
-  <div id="menuPrincipal">
+  <div class="contenedor" id="menuPrincipal">
     <h1>¡Hola! Soy <span class="matito">Matito</span></h1>
     <p>¿Listo para jugar y aprender matemáticas?</p>
 
@@ -23,74 +122,68 @@
     <button onclick="mostrarSeccion('juego')">Juego Libre</button>
   </div>
 
-  <div id="suma" class="oculto">
+  <div class="contenedor oculto" id="suma">
     <h2>Juegos de Suma</h2>
     <p><strong>2 + 3 = ?</strong></p>
     <button onclick="verificarRespuesta(4, 5, 'suma')">4</button>
     <button onclick="verificarRespuesta(5, 5, 'suma')">5</button>
     <button onclick="verificarRespuesta(6, 5, 'suma')">6</button>
     <div id="resultado-suma" class="resultado"></div>
-    <button onclick="volverAlMenu('suma')">Volver al menú</button>
+    <button class="volver-btn" onclick="volverAlMenu('suma')">Volver al menú</button>
   </div>
 
-  <div id="resta" class="oculto">
+  <div class="contenedor oculto" id="resta">
     <h2>Juegos de Resta</h2>
     <p><strong>5 - 2 = ?</strong></p>
     <button onclick="verificarRespuesta(2, 3, 'resta')">2</button>
     <button onclick="verificarRespuesta(3, 3, 'resta')">3</button>
     <button onclick="verificarRespuesta(4, 3, 'resta')">4</button>
     <div id="resultado-resta" class="resultado"></div>
-    <button onclick="volverAlMenu('resta')">Volver al menú</button>
+    <button class="volver-btn" onclick="volverAlMenu('resta')">Volver al menú</button>
   </div>
 
-  <div id="multiplicacion" class="oculto">
+  <div class="contenedor oculto" id="multiplicacion">
     <h2>Juegos de Multiplicación</h2>
     <p><strong>2 × 3 = ?</strong></p>
     <button onclick="verificarRespuesta(5, 6, 'multiplicacion')">5</button>
     <button onclick="verificarRespuesta(6, 6, 'multiplicacion')">6</button>
     <button onclick="verificarRespuesta(7, 6, 'multiplicacion')">7</button>
     <div id="resultado-multiplicacion" class="resultado"></div>
-    <button onclick="volverAlMenu('multiplicacion')">Volver al menú</button>
+    <button class="volver-btn" onclick="volverAlMenu('multiplicacion')">Volver al menú</button>
   </div>
 
-  <div id="division" class="oculto">
+  <div class="contenedor oculto" id="division">
     <h2>Juegos de División</h2>
     <p><strong>6 ÷ 2 = ?</strong></p>
     <button onclick="verificarRespuesta(2, 3, 'division')">2</button>
     <button onclick="verificarRespuesta(3, 3, 'division')">3</button>
     <button onclick="verificarRespuesta(4, 3, 'division')">4</button>
     <div id="resultado-division" class="resultado"></div>
-    <button onclick="volverAlMenu('division')">Volver al menú</button>
+    <button class="volver-btn" onclick="volverAlMenu('division')">Volver al menú</button>
   </div>
 
-  <div id="juego" class="oculto">
+  <div class="contenedor oculto" id="juego">
     <h2>¿Cuánto es 2 + 3?</h2>
     <button onclick="verificarRespuesta(4, 5, 'juego')">4</button>
     <button onclick="verificarRespuesta(5, 5, 'juego')">5</button>
     <button onclick="verificarRespuesta(6, 5, 'juego')">6</button>
     <div id="resultado-juego" class="resultado"></div>
-    <button onclick="volverAlMenu('juego')">Volver al menú</button>
+    <button class="volver-btn" onclick="volverAlMenu('juego')">Volver al menú</button>
   </div>
 
   <script>
     function mostrarSeccion(seccionId) {
-      // Ocultar menú principal
       document.getElementById('menuPrincipal').classList.add('oculto');
-      // Ocultar todas las secciones
       ['suma', 'resta', 'multiplicacion', 'division', 'juego'].forEach(id => {
         document.getElementById(id).classList.add('oculto');
       });
-      // Mostrar la sección elegida
       document.getElementById(seccionId).classList.remove('oculto');
     }
 
     function volverAlMenu(seccionId) {
-      // Ocultar la sección actual
       document.getElementById(seccionId).classList.add('oculto');
-      // Limpiar el resultado de esa sección
       const resultadoDiv = document.getElementById('resultado-' + seccionId);
       if (resultadoDiv) resultadoDiv.innerHTML = '';
-      // Mostrar menú principal
       document.getElementById('menuPrincipal').classList.remove('oculto');
     }
 
@@ -100,14 +193,15 @@
         const resultadoDiv = document.getElementById('resultado-' + seccionId);
         if (!resultadoDiv) return;
         resultadoDiv.innerHTML = correcto
-          ? `<p style="color:green;">¡Correcto! 🎉</p>
-             <video src="videos/correcto.mp4" autoplay loop muted width="150" height="150"></video>`
-          : `<p style="color:red;">Intenta de nuevo ❌</p>
-             <video src="videos/incorrecto.mp4" autoplay loop muted width="150" height="150"></video>`;
+          ? `<p style="color: #00ff00;">¡Correcto! 🎉</p>
+             <video src="videos/correcto.mp4" autoplay loop muted width="150" height="150" style="border-radius: 12px;"></video>`
+          : `<p style="color: #ff4444;">Intenta de nuevo ❌</p>
+             <video src="videos/incorrecto.mp4" autoplay loop muted width="150" height="150" style="border-radius: 12px;"></video>`;
       } else {
         alert(correcto ? "¡Correcto! 🎉" : "Intenta de nuevo ❌");
       }
     }
   </script>
+
 </body>
 </html>
